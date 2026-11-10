@@ -9,6 +9,7 @@
     "db:migrate:dev": "prisma migrate dev",
     "db:migrate:deploy": "prisma migrate deploy",
     "bootstrap:admin": "node scripts/bootstrap-admin.js",
+    "test:tamper": "node scripts/test-tamper-detection.js",
     "verify": "node scripts/verify-system.js",
     "server": "node backend/src/server.js",
     "server:dev": "node --watch backend/src/server.js",

@@ -1,0 +1,38 @@
+name: BalanceVault CI Suite
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  build-and-verify:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js 22.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22.x
+        cache: 'npm'
+
+    - name: Install backend dependencies
+      run: npm ci
+
+    - name: Generate Prisma Client
+      run: npm run db:generate
+
+    - name: Install frontend dependencies & build
+      run: |
+        npm --prefix frontend ci
+        npm run build
+
+    - name: Run Cryptographic Tamper Proof Test
+      run: npm run test:tamper
+
+    - name: Run End-to-End System Verification Suite
+      run: npm run verify
