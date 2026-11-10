@@ -157,3 +157,4 @@ testTamperDetection().catch(err => {
   console.error('Tamper demo error:', err);
   process.exit(1);
 });
+
