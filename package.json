@@ -1,0 +1,37 @@
+{
+  "name": "balancevault",
+  "version": "1.0.0",
+  "description": "BalanceVault — money movement with a ledger you can prove",
+  "main": "backend/src/server.js",
+  "scripts": {
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma db push",
+    "db:migrate:dev": "prisma migrate dev",
+    "db:migrate:deploy": "prisma migrate deploy",
+    "bootstrap:admin": "node scripts/bootstrap-admin.js",
+    "verify": "node scripts/verify-system.js",
+    "server": "node backend/src/server.js",
+    "server:dev": "node --watch backend/src/server.js",
+    "client": "npm --prefix frontend run dev",
+    "client:build": "npm --prefix frontend run build",
+    "dev": "concurrently --kill-others-on-fail -n \"backend,frontend\" -c \"cyan,magenta\" \"npm run server\" \"npm run client\"",
+    "start": "node backend/src/server.js",
+    "build": "npm --prefix frontend run build"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "ioredis": "^5.4.2",
+    "jsonwebtoken": "^9.0.2",
+    "rate-limit-redis": "^4.2.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "prisma": "^5.22.0"
+  }
+}
+
